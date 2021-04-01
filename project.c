@@ -1,7 +1,9 @@
+  
 #include <stdio.h> //Mengimpor file stdio.h
 
 //fungsi perpangkatan
-float pangkat(int i, int l){
+float pangkat(int i, int l)
+{
     if(l==0){
         return 1;                  
     }
@@ -9,9 +11,12 @@ float pangkat(int i, int l){
         return i * pangkat(i,l-1);  
 }
 //vektor jarak a kuadrat + b kuadrat
-int vektor(int o, int p, int q, int r){
+
+int vektor(int o, int p, int q, int r)
+{
     return (pangkat(p-o,2) + pangkat(r-q,2));
 }
+
 void findPos(char *dir)
 {
     int up = 0, down = 0;
@@ -26,13 +31,27 @@ void findPos(char *dir)
     int robothealth = 100;
     int kecoakhealth = 100;
     int choice;
+    int hit,miss;
     
-    switch(choice){
+    switch(choice)
+    {
         case 1:
         printf("Enter the Direction String:  ");
         scanf("%s", &dir);    
     
-    for (i = 0; dir[i] != '\0' ; i++) {
+    /* Intializes random number generator */
+
+    srand((unsigned) time(&t));
+
+    /* Print 2 random numbers from 0 to 100 */
+    a = rand() % 100;
+    b = rand() % 100;
+    printf("\nPosisi kecoak adalah: ");
+    printf("(%d,", a);
+    printf("%d)", b);
+
+    for (i = 0; dir[i] != '\0' ; i++) 
+    {
 
         //Counts each direction
         if (dir[i] == 'U' || dir[i] == 'u')
@@ -55,27 +74,26 @@ void findPos(char *dir)
     //Final position of robot
     x = right - left;
     y = up - down;
+
+    if (x < 0 || y < 0)
+    {
+        printf("Jalan robot keluar dari koordinat, silahkan ulangi kembali");
+        break;
+    }
+    if (a == x && b == y)
+    {
+        printf("Robot menabrak kecoak, silahkan ulangi kembali");
+        break;
+    }
+
     printf("Final Position of the Robot: (");
     printf("%d", (x));
     printf(",%d", (y));
     printf(")");
     
-    
-    
-    /* Intializes random number generator */
-
-    srand((unsigned) time(&t));
-
-    /* Print 2 random numbers from 0 to 100 */
-    a = rand() % 100;
-    b = rand() % 100;
-    printf("\nPosisi kecoak adalah: ");
-    printf("(%d,", a);
-    printf("%d)", b);
-   
     printf("\nJarak robot dengan kecoak");
     printf("\nJarak horizontal : %d", a-x);
-    printf("\nJarak vertikal: %d", b-y
+    printf("\nJarak vertikal: %d", b-y);
     break;
            
     // The accuracy of robot firing
@@ -92,11 +110,14 @@ void findPos(char *dir)
            exit(1);
            break;
            
-    if(hit >= 20 & kecoakhealth <= 0|| robothealth> 0){
+    if(hit >= 20 & kecoakhealth <= 0|| robothealth> 0)
+    {
         printf("Mission Complete\n");
     }
-    else if (robothealth == 0 || choice == 3){
+    else if (robothealth == 0 || choice == 3)
+    {
         printf("Game Over\n");
+    }
     }
 }
 
@@ -110,8 +131,6 @@ int main()
 
     //Function call to calculate position
     findPos(&dir);
-    
-    
 
     return 0;
 }
