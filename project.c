@@ -1,5 +1,6 @@
 #include <stdio.h> //Mengimpor file stdio.h
 #include <stdlib.h> // Mengimpor file stdlib.h
+#include <time.h> // Mengimpor file time.h
 
 //global int
 int x,y;
