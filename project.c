@@ -9,6 +9,7 @@ int left = 0, right = 0;
 int robothealth = 100;
 int kecoakhealth = 0;
 int count = 0;
+int q = 0, w = 0;
 
 //fungsi perpangkatan
 float pangkat(int i, int l){
@@ -24,34 +25,42 @@ int vektor(int p, int q){
 }
 void findPos(char *dir)
 {
+    //Final position of robot
     int i;
 
     for (i = 0; dir[i] != '\0' ; i++) {
 
         //Counts each direction1
         if (dir[i] == 'U' || dir[i] == 'u')
-            up++;
+            up++, q++;
         else if (dir[i] == 'D' || dir[i] == 'd')
-            down++;
+            down++, q--;
         else if (dir[i] == 'L' || dir[i] == 'l')
-            left++;
+            left++, w--;
         else if (dir[i] == 'R' || dir[i] == 'r')
-            right++;
-
+            right++, w++;
           //In case of illegal character in the string
         else
         {
-            printf("Position Unable to Find, Enter Correct Direction.");
-            break;
+            printf("Koordinat yang dimasukkan salah, silahkan ulangi kembali.\n");
+            exit(0);
+        }
+        if (q<0 || w<0)
+        {
+            printf("Robot diluar jangkauan, silahkan ulangi kembali.\n");
+            exit(0);
+        }
+        if (w == a || q == b)
+        {
+            printf("Robot menabrak kecoak, silahkan ulangi kembali.\n");
+            exit(0);
         }
     }
-
-    //Final position of robot
+     //Final position of robot
     x = right - left;
     y = up - down;
-   ;
+    ;
 }
-
 
     /* Intializes random number generator */
 void spawn()
@@ -59,12 +68,10 @@ void spawn()
     time_t t;
     kecoakhealth = 20;
     srand((unsigned) time(&t));
-    /* Print 2 random numbers from 0 to 100 */
-    a = rand() % 100;
-    b = rand() % 100;
+    /* Print 2 random numbers from 0 to 10 */
+    a = x + 1 + rand() % 20;
+    b = y + 1 + rand() % 20;
     printf("\nKecoak baru telah muncul");
-
-
 }
     // The accuracy of robot firing
 void Fire(int h, int v){
@@ -75,7 +82,7 @@ void Fire(int h, int v){
     else
         printf("\nDiluar jangkauan");
 
-    printf("Nyawa kecoa sekarang ialah %d",kecoakhealth);
+    printf("\nNyawa kecoa sekarang ialah %d",kecoakhealth);
     if(kecoakhealth <= 0 && robothealth> 0){
         printf("Mission Complete\n");
     }
@@ -115,24 +122,28 @@ void KecoakMoveset(){
             }
         }
         printf("Kecoak terbang/n Kecoak sekarang berada di koordinat (");
-        printf("%d", (a));
-        printf(",%d", (b));
-        printf(")");
+        printf("(%d,%d)", a,b);
     }
 }
+// Absoulte Function
+int Abs(int m){
+    if (m>=0){
+    return m = m;
+    }
+    else;
+    return m*(-1);
+}
 void Menu(){
-    printf("\nPosisi robot: (");
-    printf("%d", (x));
-    printf(",%d", (y));
-    printf(")");
+    printf("\nPosisi robot: ");
+    printf("(%d,%d)", x,y);
+    printf("\nKecoak terdeteksi di: ");
+    printf("(%d,%d)", a,b);
 
-    printf("\nKecoak terdeteksi di (");
-    printf("%d,", a);
-    printf("%d)", b);
-
+    int jarakx = a-x;
+    int jaraky = b-y;
     printf("\nJarak robot dengan kecoak");
-    printf("\nJarak horizontal : %d", a-x);
-    printf("\nJarak vertikal: %d\n", b-y);
+    printf("\nJarak horizontal : %d", abs(jarakx));
+    printf("\nJarak vertikal: %d\n", abs(jaraky));
 
     printf("\nHP Robot : %d", robothealth);
     printf("\nHP Kecoak : %d\n", kecoakhealth);
@@ -143,6 +154,7 @@ void Menu(){
     printf("3. Inactivating\n");
     printf("\nChoose your choice: ");
 }
+
 
 int main(){
     char *dir;
