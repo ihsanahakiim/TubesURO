@@ -42,7 +42,7 @@ void findPos(int *dir)
             up++;
         else if (dir[i] == 8)
             down++;
-        else if (dir[i] == 0)
+        else if (dir[i] == 6)
             left++;
         else if (dir[i] == 9)
             right++;
@@ -175,7 +175,7 @@ int main(){
             printf("\nPress 7 to Go Forward");
             printf("\nPress 8 to Go Backward");
             printf("\nPress 9 to Go Right");
-            printf("\nPress 0 to Go Left");
+            printf("\nPress 6 to Go Left");
             printf("\nEnter the Direction String:  \n");
             scanf("%d", &dir);
 
