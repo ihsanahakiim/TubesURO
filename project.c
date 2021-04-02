@@ -33,9 +33,8 @@ int vektor(int p, int q){
 }
 void findPos(int *dir)
 {
-    //Final position of robot
     int i;
-
+    int n=5;
     for (i = 0; dir[i] != '\0' ; i++) {
 
         //Counts each direction1
@@ -49,20 +48,15 @@ void findPos(int *dir)
             right++;
 
           //In case of illegal character in the string
-        else
-        {
-            printf("\nKoordinat yang dimasukkan salah, silahkan ulangi kembali.\n");
-            exit(0);
-        }
         if (q<0 || w<0)
         {
             printf("Robot diluar jangkauan, silahkan ulangi kembali.\n");
-            exit(0);
+            break;
         }
         if (w == a || q == b)
         {
             printf("Robot menabrak kecoak, silahkan ulangi kembali.\n");
-            exit(0);
+            break;
         }
     }
      //Final position of robot
@@ -182,7 +176,7 @@ int main(){
             printf("\nPress 8 to Go Backward");
             printf("\nPress 9 to Go Right");
             printf("\nPress 0 to Go Left");
-            printf("\nEnter the Direction String:  ");
+            printf("\nEnter the Direction String:  \n");
             scanf("%d", &dir);
 
             //Function call to calculate position
