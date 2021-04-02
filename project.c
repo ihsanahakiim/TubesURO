@@ -193,15 +193,17 @@ int main(){
             Fire(x-a,y-b);
             break;
         case 3:
+            robothealth = -1;
+            printf("Robot dimatikan");
             break;
-        default:
-        break;
         }
         if (kecoakhealth < 20 && kecoakhealth >0 ){
             KecoakMoveset();
         }
     }
-    printf("Robot telah meninggal\n");
+    if (robothealth = 0){
+        printf("Robot telah meninggal\n");
+    }
     InactivateRobot();
     return 0;
 }
