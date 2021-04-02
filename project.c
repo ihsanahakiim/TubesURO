@@ -5,6 +5,8 @@
 //global int
 int x,y;
 int a,b;
+int up = 0, down = 0;
+int left = 0, right = 0;
 int robothealth = 100;
 int kecoakhealth = 0;
 int count = 0;
@@ -12,10 +14,10 @@ int count = 0;
 //fungsi perpangkatan
 float pangkat(int i, int l){
     if(l==0){
-        return 1;                  
+        return 1;
     }
     else
-        return i * pangkat(i,l-1);  
+        return i * pangkat(i,l-1);
 }
 //vektor jarak a kuadrat + b kuadrat
 int vektor(int p, int q){
@@ -23,10 +25,8 @@ int vektor(int p, int q){
 }
 void findPos(char *dir)
 {
-    int up = 0, down = 0;
-    int left = 0, right = 0;
     int i;
-        
+
     for (i = 0; dir[i] != '\0' ; i++) {
 
         //Counts each direction1
@@ -50,30 +50,23 @@ void findPos(char *dir)
     //Final position of robot
     x = right - left;
     y = up - down;
-    printf("Final Position of the Robot: (");
-    printf("%d", (x));
-    printf(",%d", (y));
-    printf(")");
    ;
 }
-    
-    
+
+
     /* Intializes random number generator */
 void spawn()
 {
     time_t t;
-    kecoakhealth = 100;
+    kecoakhealth = 20;
     srand((unsigned) time(&t));
     /* Print 2 random numbers from 0 to 100 */
     a = rand() % 100;
     b = rand() % 100;
-    printf("\nKecoak terdeteksi di (");
-    printf("%d,", a);
-    printf("%d)", b);
-   
+    printf("\nKecoak baru telah muncul");
 
-    
-}           
+
+}
     // The accuracy of robot firing
 void Fire(int h, int v){
     int hit = 0;
@@ -85,7 +78,7 @@ void Fire(int h, int v){
     }
     else
         miss += 1;
-           
+
     if(hit >= 20 & kecoakhealth <= 0|| robothealth> 0){
         printf("Mission Complete\n");
     }
@@ -99,7 +92,7 @@ void InactivateRobot(){
 }
 void KecoakMoveset(){
     //Cek jarak
-    if (vektor(a,b)<=2)
+    if (vektor(a-x,b-y)<=2)
     //Kecoak attack
     {
         printf("Kecoak Attack");
@@ -108,22 +101,22 @@ void KecoakMoveset(){
     }
     else{
     //Kecoak move
-        if (a-x>1 && a-x<-1){
+        if (a-x>1 || a-x<-1){
             if(a<x){
-                ++a;
-            }
+                a+=1;
+            }2
             if(a>x){
-                --a;
+                a-=1;
             }
         }
-        if (b-y>1 && b-y<-1){
+        if (b-y>1 || b-y<-1){
             if(b<y){
-                ++b;
+                b+=1;
             }
             if(b>y){
-                --b;
+                b-=1;
             }
-        } 
+        }
         printf("Kecoak terbang/n Kecoak sekarang berada di koordinat (");
         printf("%d", (a));
         printf(",%d", (b));
@@ -131,11 +124,23 @@ void KecoakMoveset(){
     }
 }
 void Menu(){
+    printf("\nPosisi robot: (");
+    printf("%d", (x));
+    printf(",%d", (y));
+    printf(")");
+
+    printf("\nKecoak terdeteksi di (");
+    printf("%d,", a);
+    printf("%d)", b);
+
     printf("\nJarak robot dengan kecoak");
     printf("\nJarak horizontal : %d", a-x);
-    printf("\nJarak vertikal: %d", b-y);
+    printf("\nJarak vertikal: %d\n", b-y);
 
-    printf("Robot Control\n");
+    printf("\nHP Robot : %d", robothealth);
+    printf("\nHP Kecoak : %d\n", kecoakhealth);
+
+    printf("\nRobot Control\n");
     printf("1. Moving\n");
     printf("2. Shooting\n");
     printf("3. Inactivating\n");
@@ -146,13 +151,13 @@ int main(){
     char *dir;
     int choice;
     spawn();
-    while (robothealth > 0);
+    while (robothealth > 0){
         if (kecoakhealth <= 0){
             printf("Kecoak is dead\n");
             spawn();
             ++count;
         }
-        
+        Menu();
         scanf("%d", &choice);
         switch (choice)
         {
@@ -164,19 +169,18 @@ int main(){
             findPos(&dir);
             break;
         case 2:
-            findPos(&dir);
             //Function call to take hit and miss of shooting programm
             Fire(x-a,y-b);
             break;
         case 3:
-            InactivateRobot();
+            break;
         default:
         break;
         }
         if (kecoakhealth < 20 && kecoakhealth >0 ){
             KecoakMoveset();
         }
-
+    }
     printf("Robot telah meninggal\n");
     InactivateRobot();
     return 0;
