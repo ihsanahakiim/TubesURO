@@ -37,8 +37,6 @@ int vektor(int p, int q){
 }
 void findPos(int dir)
 {
-    int i;
-    int n=5;
     //Counts each direction1
     if (dir == 7){
         q++;
