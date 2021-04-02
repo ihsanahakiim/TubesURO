@@ -31,3 +31,6 @@ Cara menjalankan program
 
 Link GitHub:
 https://github.com/ihsanahakiim/TubesURO.git
+
+Link Video Tutorial penjalanan program:
+https://drive.google.com/drive/folders/1fpjxRrK9Y-ZnmodntgQdfNSu5mt4L2-I?usp=sharing
