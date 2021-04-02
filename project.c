@@ -42,7 +42,7 @@ void findPos(char *dir)
           //In case of illegal character in the string
         else
         {
-            printf("Koordinat yang dimasukkan salah, silahkan ulangi kembali.\n");
+            printf("\nKoordinat yang dimasukkan salah, silahkan ulangi kembali.\n");
             exit(0);
         }
         if (q<0 || w<0)
@@ -171,7 +171,11 @@ int main(){
         switch (choice)
         {
         case 1:
-            printf("Enter the Direction String:  ");
+            printf("\nPress 7 to Go Forward");
+            printf("\nPress 8 to Go Backward");
+            printf("\nPress 9 to Go Right");
+            printf("\nPress 0 to Go Left");
+            printf("\nEnter the Direction String:  ");
             scanf("%s", &dir);
 
             //Function call to calculate position
