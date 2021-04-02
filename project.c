@@ -42,9 +42,9 @@ void findPos(int *dir)
             up++;
         else if (dir[i] == 8)
             down++;
-        else if (dir[i] == 9)
-            left++;
         else if (dir[i] == 0)
+            left++;
+        else if (dir[i] == 9)
             right++;
 
           //In case of illegal character in the string
