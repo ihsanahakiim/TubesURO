@@ -71,12 +71,12 @@ void spawn()
 void Fire(int h, int v){
 
     if(vektor(h,v) <= pangkat(3,2)){
-        kecoakhealth -= 5;
-        printf("Serangan kena, HP kecoak berkurang menjadi %d\n", kecoakhealth);
+    kecoakhealth -= 5;
     }
     else
-        printf("Diluar jangkauan\n");
+        printf("\nDiluar jangkauan");
 
+    printf("Nyawa kecoa sekarang ialah %d",kecoakhealth);
     if(kecoakhealth <= 0 && robothealth> 0){
         printf("Mission Complete\n");
     }
@@ -85,7 +85,7 @@ void Fire(int h, int v){
     }
 }
 void InactivateRobot(){
-    printf("\nGame Over\n");
+    printf("Game Over\n");
     printf("Kamu berhasil membasmi %d kecoak", count);
 }
 void KecoakMoveset(){
@@ -93,9 +93,9 @@ void KecoakMoveset(){
     if (vektor(a-x,b-y)<=2)
     //Kecoak attack
     {
-        printf("Kecoak Attack\n");
+        printf("Kecoak Attack");
         robothealth-=2;
-        printf("Sisa HP robot %d\n", robothealth);
+        printf("Sisa HP robot %d", robothealth);
     }
     else{
     //Kecoak move
@@ -115,15 +115,13 @@ void KecoakMoveset(){
                 --b;
             }
         }
-        printf("Kecoak terbang\n");
-        printf("Kecoak sekarang berada di koordinat (\n");
+        printf("Kecoak terbang/n Kecoak sekarang berada di koordinat (");
         printf("%d", (a));
         printf(",%d", (b));
         printf(")");
     }
 }
 void Menu(){
-    printf("\n=============================");
     printf("\nPosisi robot: (");
     printf("%d", (x));
     printf(",%d", (y));
@@ -173,17 +171,15 @@ int main(){
             Fire(x-a,y-b);
             break;
         case 3:
-            robothealth = -1;
-            printf("Robot dimatikan");
             break;
+        default:
+        break;
         }
         if (kecoakhealth < 20 && kecoakhealth >0 ){
             KecoakMoveset();
         }
     }
-    if (robothealth = 0){
-        printf("Robot telah meninggal\n");
-    }
+    printf("Robot telah meninggal\n");
     InactivateRobot();
     return 0;
 }
