@@ -108,7 +108,7 @@ void KecoakMoveset(){
     //Kecoak attack
     {
         printf("Kecoak Attack\n");
-        robothealth-=2;
+        robothealth-=3;
         printf("Sisa HP robot %d\n", robothealth);
     }
     else{
