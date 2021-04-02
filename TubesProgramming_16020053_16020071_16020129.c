@@ -176,7 +176,7 @@ int main(){
             printf("\nPress 8 to Go Backward");
             printf("\nPress 9 to Go Right");
             printf("\nPress 6 to Go Left");
-            printf("\nEnter the Direction String:  \n");
+            printf("\nEnter the Direction String:  ");
             scanf("%d", &dir);
 
             //Function call to calculate position
