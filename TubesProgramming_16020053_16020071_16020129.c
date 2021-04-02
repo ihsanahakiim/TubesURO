@@ -1,6 +1,10 @@
 #include <stdio.h> //Mengimpor file stdio.h
 #include <time.h> // Mengimpor file time.h
 
+//16020053 Karina Widya Ramadhani
+//16020071 Ariansyah
+//16020129 Muhammad Ihsan Abdul Hakim
+
 //global int
 int x,y;
 int a,b;
