@@ -23,7 +23,7 @@ float pangkat(int i, int l){
     else
         return i * pangkat(i,l-1);
 }
-// Absoulte Function
+// Absolute Function
 int Abs(int m){
     if (m>=0){
     return m = m;
