@@ -53,7 +53,7 @@ void findPos(int *dir)
             printf("Robot diluar jangkauan, silahkan ulangi kembali.\n");
             break;
         }
-        if (w == a || q == b)
+        if (w == a && q == b)
         {
             printf("Robot menabrak kecoak, silahkan ulangi kembali.\n");
             break;
