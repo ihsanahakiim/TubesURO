@@ -39,13 +39,13 @@ void findPos(int *dir)
 
         //Counts each direction1
         if (dir[i] == 7)
-            up++;
+            q++;
         else if (dir[i] == 8)
-            down++;
+            q--;
         else if (dir[i] == 6)
-            left++;
+            w--;
         else if (dir[i] == 9)
-            right++;
+            w++;
 
           //In case of illegal character in the string
         if (q<0 || w<0)
@@ -58,6 +58,15 @@ void findPos(int *dir)
             printf("Robot menabrak kecoak, silahkan ulangi kembali.\n");
             break;
         }
+
+        if (dir[i] == 7)
+            up++;
+        else if (dir[i] == 8)
+            down++;
+        else if (dir[i] == 6)
+            left++;
+        else if (dir[i] == 9)
+            right++;
     }
      //Final position of robot
     x = right - left;
