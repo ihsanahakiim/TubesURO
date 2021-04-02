@@ -69,17 +69,14 @@ void spawn()
 }
     // The accuracy of robot firing
 void Fire(int h, int v){
-    int hit = 0;
-    int miss = 0;
 
     if(vektor(h,v) <= pangkat(3,2)){
-    hit += 1;
     kecoakhealth -= 5;
     }
     else
-        miss += 1;
+        printf("\nDiluar jangkauan");
 
-    if(hit >= 20 & kecoakhealth <= 0|| robothealth> 0){
+    if(kecoakhealth <= 0 && robothealth> 0){
         printf("Mission Complete\n");
     }
     else if (robothealth == 0){
@@ -103,18 +100,18 @@ void KecoakMoveset(){
     //Kecoak move
         if (a-x>1 || a-x<-1){
             if(a<x){
-                a+=1;
-            }2
+                ++a;
+            }
             if(a>x){
-                a-=1;
+                --a;
             }
         }
         if (b-y>1 || b-y<-1){
             if(b<y){
-                b+=1;
+                ++b;
             }
             if(b>y){
-                b-=1;
+                --b;
             }
         }
         printf("Kecoak terbang/n Kecoak sekarang berada di koordinat (");
